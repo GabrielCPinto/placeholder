@@ -9,9 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://esixucyuijf1" path="res://assets/Ronin/spr_RoninJump_strip.png" id="6_ychry"]
 [ext_resource type="Texture2D" uid="uid://cky6h0u6yaqwe" path="res://assets/Ronin/spr_RoninRun_strip.png" id="7_3w6gv"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qwabd"]
-radius = 15.0
-height = 38.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x31sx"]
+size = Vector2(26, 31)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l3n1l"]
 atlas = ExtResource("1_r4j78")
@@ -457,7 +456,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 10.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -492,7 +491,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dash",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -545,7 +544,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -571,7 +570,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -600,7 +599,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -650,7 +649,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -685,18 +684,24 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_ljcuw")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-2, 0)
-shape = SubResource("CapsuleShape2D_qwabd")
+position = Vector2(1, -2.5)
+shape = SubResource("RectangleShape2D_x31sx")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hw7x2")
-animation = &"attack"
+animation = &"jump"
 autoplay = "idle"
+frame = 14
+frame_progress = 1.0
+
+[node name="coyote_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="coyote_timer" to="." method="_on_coyote_timer_timeout"]
