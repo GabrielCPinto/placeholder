@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk5auh7jvhwma"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ahsdt"]
+[ext_resource type="Texture2D" uid="uid://hb43gjnvvcxy" path="res://assets/Bot Wheel/static idle.png" id="1_plky5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qgry"]
+atlas = ExtResource("1_plky5")
+region = Rect2(0, 0, 39, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v4o6h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qgry")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5jd4"]
+size = Vector2(16, 18)
+
+[node name="enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_ahsdt")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v4o6h")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(2, 3)
+shape = SubResource("RectangleShape2D_b5jd4")
