@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0lyc04uyctsx"]
+[gd_scene load_steps=14 format=3 uid="uid://c0lyc04uyctsx"]
 
 [ext_resource type="Texture2D" uid="uid://cgwocbcf1trk0" path="res://assets/Abyss_asset_pack/Ground_tiles/Forest_tileset.png" id="1_ugb3s"]
 [ext_resource type="Texture2D" uid="uid://dbcgbfkm6mktt" path="res://assets/Abyss_asset_pack/Ground_tiles/Forest_environment_tileset.png" id="2_n7co8"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dk5auh7jvhwma" path="res://actors/enemy.tscn" id="5_hsq0a"]
 [ext_resource type="PackedScene" uid="uid://ci7lxtgn0k1y6" path="res://scenes/transition.tscn" id="6_05ryy"]
 [ext_resource type="PackedScene" uid="uid://byv30hiuc2w7r" path="res://prefabs/next_level.tscn" id="7_cf6h2"]
+[ext_resource type="AudioStream" uid="uid://2n7nbc5shb0h" path="res://sounds/tunetank.com_5709_fire-cocktail_by_alexey-anisimov.mp3" id="8_q4r23"]
+[ext_resource type="Script" path="res://scripts/bg_sfx.gd" id="9_6weao"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_73cd2"]
 texture = ExtResource("1_ugb3s")
@@ -419,6 +421,11 @@ zoom = Vector2(3, 3)
 limit_left = -123
 limit_bottom = 154
 
+[node name="bg_sfx" type="AudioStreamPlayer2D" parent="player"]
+stream = ExtResource("8_q4r23")
+autoplay = true
+script = ExtResource("9_6weao")
+
 [node name="enemies" type="Node2D" parent="."]
 
 [node name="enemy" parent="enemies" instance=ExtResource("5_hsq0a")]
@@ -436,3 +443,5 @@ position = Vector2(1625, -101)
 [node name="next_level" parent="." instance=ExtResource("7_cf6h2")]
 position = Vector2(3361, 149)
 next_level = "uid://dno4odtxikyqx"
+
+[connection signal="finished" from="player/bg_sfx" to="player/bg_sfx" method="_on_finished"]
