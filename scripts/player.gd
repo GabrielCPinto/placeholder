@@ -30,7 +30,7 @@ func _physics_process(delta):
 	velocity.x = 0
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and can_jump:
 		velocity.y = -JUMP_VELOCITY
 	elif Input.is_action_just_pressed("ui_accept") and double_jump:
 		velocity.y = -JUMP_VELOCITY
