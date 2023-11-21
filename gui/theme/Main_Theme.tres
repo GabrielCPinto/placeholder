@@ -1,3 +1,11 @@
-[gd_resource type="Theme" format=3 uid="uid://bgnbmcr1w2o1v"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bgnbmcr1w2o1v"]
+
+[ext_resource type="FontFile" uid="uid://cl2s103c28pho" path="res://assets/Menus/techno_hideo.ttf" id="1_cdbjx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tma0"]
+bg_color = Color(0.00784314, 0.152941, 0.239216, 1)
 
 [resource]
+default_font = ExtResource("1_cdbjx")
+default_font_size = 26
+Panel/styles/panel = SubResource("StyleBoxFlat_0tma0")
